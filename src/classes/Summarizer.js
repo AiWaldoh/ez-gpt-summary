@@ -37,23 +37,19 @@ class RunApp {
     // loadingMsg = await wendahAI.get_response(1);
     // this.messageEmitter.emit('response', loadingMsg);
 
-    const data = await this.scraper.scrapeForImportantStuff();
-
+    //MAGIC HAPPENS HERE
+    const htmlStructureWithWords = await this.scraper.scrapeForImportantStuff();
     this.chatBot.send_message(prompt);
-    this.chatBot.send_message(JSON.stringify(data));
+    this.chatBot.send_message(JSON.stringify(htmlStructureWithWords));
     const jsonXpaths = JSON.parse(await this.chatBot.get_response(0));
-
-
-    console.log(`Parsing important data using xpath...`);
+    console.log(`Parsing website important data using xpath...`);
     const text = await this.scraper.getTextFromXPath(url, jsonXpaths.xpath);
     console.log(text);
 
     // wendahAI.send_message(`generate a funny 10 word loading message saying you're summarizing the parsed data for ${url}`);
-
     // //wendahAI.send_message(`generate a funny 20 word loading message for summarizing data a la Sherlock Holmes for ${url}.`);
     // loadingMsg = await wendahAI.get_response(1);
     // this.messageEmitter.emit('response', loadingMsg);
-
 
     this.chatBot.clear_messages();
     this.chatBot.set_role("You are a summarization AI.")
