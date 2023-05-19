@@ -18,7 +18,7 @@ class WebScraper {
         await this.page.goto(url, { waitUntil: 'networkidle0' });
     }
 
-    async scrapePage() {
+    async scrapeForImportantStuff() {
         try {
             return await this.page.evaluate(() => {
                 const isVisible = (element) => {
@@ -27,8 +27,8 @@ class WebScraper {
 
                 const extractTextFromChild = (childNode) => {
 
-                    // Only allow p, span, h1, h2, h3, h4, h5, h6 and other tags that contain text. NO DIVS ALLOWED!
-                    const allowedTags = ['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'a', 'b', 'i', 'strong', 'em', 'u', 's', 'blockquote', 'code', 'pre', 'abbr', 'sub', 'sup', 'small', 'big', 'cite', 'details', 'summary', 'caption', 'col', 'colgroup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'form', 'input', 'label', 'legend', 'option', 'output', 'select', 'textarea'];
+                    // Only allow p, span, h1, h2, h3, h4, h5, h6 and other tags that contain text.
+                    const allowedTags = ['p', 'div', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'b', 'i', 'big', 'cite', 'details', 'summary', 'caption', 'col', 'colgroup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'form', 'input', 'label', 'legend', 'option', 'output', 'select', 'textarea'];
                     if (!allowedTags.includes(childNode.tagName.toLowerCase())) {
                         return null;
                     }
@@ -63,8 +63,7 @@ class WebScraper {
     }
 
     async getTextFromXPath(url, xpaths) {
-        await this.page.goto(url);
-
+        await this.page.goto(url, { waitUntil: 'networkidle0' });
         const texts = [];
         for (const xpath of xpaths) {
             const elements = await this.page.$x(xpath);
