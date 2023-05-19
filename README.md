@@ -37,12 +37,12 @@ These instructions will help you get a copy of the project up and running on you
 ## Usage
 
 Here is a basic example of how to use EZ-GPT-Summary in your code:
-```const EZGPTSummary = require('./src/classes/EZGPTSummary.js');
+```const Summarizer = require('./src/classes/Summarizer.js');
 
 const url_to_summarize = "http://example.com/";
 
 async function main() {
-    const app = new EZGPTSummary(url_to_summarize);
+    const app = new Summarizer(url_to_summarize);
     const summary = await app.summarize();
     console.log(summary);
 }
