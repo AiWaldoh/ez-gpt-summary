@@ -37,7 +37,8 @@ These instructions will help you get a copy of the project up and running on you
 ## Usage
 
 Here is a basic example of how to use EZ-GPT-Summary in your code:
-```const Summarizer = require('./src/classes/Summarizer.js');
+```
+const Summarizer = require('./src/classes/Summarizer.js');
 
 const url_to_summarize = "http://example.com/";
 
