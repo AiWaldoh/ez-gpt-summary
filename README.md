@@ -43,8 +43,8 @@ const Summarizer = require('./src/classes/Summarizer.js');
 const url_to_summarize = "http://example.com/";
 
 async function main() {
-    const app = new Summarizer(url_to_summarize);
-    const summary = await app.summarize();
+    const app = new Summarizer();
+    const summary = await app.summarize(url_to_summarize);
     console.log(summary);
 }
 
